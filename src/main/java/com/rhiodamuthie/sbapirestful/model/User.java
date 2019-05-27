@@ -16,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Employee {
+public class User {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -29,6 +29,19 @@ public class Employee {
     @NotEmpty(message = "*Please provide your password")
     @Transient
     private String password;
+
+    private String plainPassword;
+
+
+    private String name;
+
+    private String email;
+
+    private String gender;
+
+    private String age;
+
+    private String address;
 
     private String empNo;
 
@@ -46,10 +59,4 @@ public class Employee {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    public Employee(String empName) {
-        this.empName = empName;
-    }
-
-    public Employee(String empNo, String empName, String position) {
-    }
 }

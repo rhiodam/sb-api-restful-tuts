@@ -1,6 +1,9 @@
 package com.rhiodamuthie.sbapirestful;
 
+import com.rhiodamuthie.sbapirestful.model.Product;
 import com.rhiodamuthie.sbapirestful.model.Quote;
+import com.rhiodamuthie.sbapirestful.service.ProductService;
+import com.rhiodamuthie.sbapirestful.service.ProductServiceImpl;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.boot.CommandLineRunner;
@@ -39,5 +42,16 @@ public class SbApiRestfulApplication {
             log.info(quote.toString());
         };
     }
+
+    @Bean
+    CommandLineRunner runner(ProductServiceImpl productService) {
+        return args -> {
+            Product p = new Product();
+            p.setName("A");
+//            productService.save(p);
+            // more products
+        };
+    }
+
 
 }
