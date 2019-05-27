@@ -1,6 +1,6 @@
 package com.rhiodamuthie.sbapirestful.exception;
 
-public class ResourceNotFoundException extends Exception {
+public class ResourceNotFoundException extends Throwable {
     public ResourceNotFoundException(String productNotFound) {
 
     }

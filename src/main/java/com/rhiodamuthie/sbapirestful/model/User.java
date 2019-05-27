@@ -16,6 +16,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
+//@NamedQuery(name = "allUsers", query = "SELECT u FROM User u order by username")
 public class User {
 
     @Id
