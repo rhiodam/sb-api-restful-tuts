@@ -7,6 +7,11 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -18,6 +23,8 @@ import java.util.Date;
 @Entity
 
 //@NamedQuery(name = "allUsers", query = "SELECT u FROM User u order by username")
+@Table(name = "users")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -34,10 +41,8 @@ public class User {
 
     private String plainPassword;
 
-
-    private String name;
-
-    private String email;
+    @Transient
+    private String fullname;
 
     private String gender;
 
@@ -45,20 +50,35 @@ public class User {
 
     private String address;
 
-    private String empNo;
-
-    private String empName;
-
     private String position;
 
-    @Column(name = "created_at", columnDefinition = "DATETIME")
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "created_at", nullable = false, columnDefinition = "DATETIME")
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date createdAt;
 
-    @Column(name = "updated_at", columnDefinition = "DATETIME")
+    @Column(name = "created_by", nullable = false)
+    @CreatedBy
+    private String createdBy;
+
+    @Column(name = "updated_at", nullable = false, columnDefinition = "DATETIME")
+    @LastModifiedDate
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    @Column(name = "updated_by", nullable = false)
+    @LastModifiedBy
+    private String updatedBy;
 
 }
