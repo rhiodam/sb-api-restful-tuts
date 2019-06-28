@@ -17,4 +17,6 @@ public class Foo {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+
+    private String text;
 }
